@@ -3,6 +3,8 @@ package com.practice.invoicegenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.practice.ride.Ride;
+
 public class InvoiceServiceTest {
 	@Test
 	public void givenDistanceAndTime_ShouldReturnTotalFare() {
@@ -20,5 +22,15 @@ public class InvoiceServiceTest {
 		int time = 1;
 		double fare = invoiceGenerator.calculateFare(distance, time);
 		Assert.assertEquals(5, fare, 0.0);
+	}
+	
+	@Test
+	public void givenMultipleRides_ShouldReturnTotalFare() {
+		InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+		Ride[] rides = {new Ride(2.0, 5),
+				new Ride(0.1, 1)
+		};
+		double fare = invoiceGenerator.calculateFare(rides);
+		Assert.assertEquals(30, fare, 0.0);
 	}
 }
